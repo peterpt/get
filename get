@@ -28,11 +28,13 @@ gip(){
 var1=$(dig +short $var)
 if [[ -z "$var1" ]]
 then
-echo "Invalid Hostname"
+echo "Invalid Hostname/Not Registered"
 exit 1
 else
-echo "Hostname : $var "
-echo "IP/IPS :"
+echo "Hostname:"
+echo "$var"
+echo ""
+echo "IP/IPS:"
 echo "$var1"
 exit 1
 fi
@@ -42,10 +44,14 @@ ghost() {
 var1=$(nslookup $var | grep name | awk '{print$4}' | sed 's/.$//')
 if [[ -z "$var1" ]]
 then
-echo "Invalid Ip Address"
+echo "Invalid Ip Address/Unable to Retrive"
 exit 1
 else
-echo "IP : $var | Hostname : $var1"
+echo "IP:"
+echo "$var"
+echo ""
+echo "Hostname:"
+echo "$var1"
 exit 1
 fi
 }
