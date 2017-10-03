@@ -1,0 +1,114 @@
+#!/bin/bash
+# Get 1.0 (2017) by peterpt
+# get is a simple tool to fast retrieve of hostname frm ip or vice-versa
+path=$(pwd)
+which dig > /dev/null 2>&1
+      if [ "$?" -eq "0" ]; then
+      which nslookup > /dev/null 2>&1
+      if [ "$?" -eq "0" ]; then
+echo
+else
+   echo "dnsutils missing"
+exit 1
+fi 
+fi
+which get > /dev/null 2>&1
+      if [ "$?" -eq "0" ]; then
+      echo
+else
+   cp "$path/get" /usr/local/sbin/get >/dev/null 2>&1
+chmod +x "/usr/local/sbin/get" >/dev/null 2>&1
+echo "Get tool was installed in /usr/local/sbin/get"
+echo ""
+echo "To run it just write (get) anywhere in your terminal"
+exit 1
+fi  
+
+gip(){
+var1=$(dig +short $var)
+if [[ -z "$var1" ]]
+then
+echo "Invalid Hostname"
+exit 1
+else
+echo "Hostname : $var "
+echo "IP/IPS :"
+echo "$var1"
+exit 1
+fi
+}
+
+ghost() {
+var1=$(nslookup $var | grep name | awk '{print$4}' | sed 's/.$//')
+if [[ -z "$var1" ]]
+then
+echo "Invalid Ip Address"
+exit 1
+else
+echo "IP : $var | Hostname : $var1"
+exit 1
+fi
+}
+help(){
+clear
+echo "GET 1.0 (2017) by peterpt (http://github.com/peterpt)"
+echo "***********************************************************"
+echo "Available Switches : "
+echo "-i (to retrieve hostname from ip)"
+echo "-h (to retieve ip address from hostname)"
+echo "-u (to update get tool directly from github)"
+echo ""
+echo "Example 1 : get -i google.com (to retrieve IP address)"
+echo "Example 2 : get -h 216.58.214.174 (to retrieve hostname)"
+exit 1
+}
+swt=$1
+var=$2
+if [[ -z "$swt" ]]
+then
+help
+fi
+if [[ "$swt" == "-i" ]]
+then
+if [[ -z "$var" ]]
+then
+echo "Invalid Hostname"
+echo ""
+help
+else
+gip
+fi
+fi
+if [[ "$swt" == "-h" ]]
+then
+if [[ -z "$var" ]]
+then
+echo "Invalid Ip Address"
+echo ""
+help
+else
+ghost
+fi
+fi
+if [[ "$swt" == "-u" ]]
+then
+gt=$(whereis get |awk '{print$2}')
+if [[ -z "$gt" ]]
+then
+git pull origin master
+echo "Git Update Completed"
+exit 1
+else
+echo "Get Tool found in : $gt"
+which wget > /dev/null 2>&1
+      if [ "$?" -eq "1" ]; then
+apt-get install wget -y > /dev/null 2>&1
+fi
+rm -f "$gt" >/dev/null 2>&1
+wget https://raw.githubusercontent.com/peterpt/get/master/get -O "$gt" >/dev/null 2>&1
+chmod +x "$gt" >/dev/null 2>&1
+echo ""
+echo "Get binary was updated succefully."
+exit 1
+fi
+fi
