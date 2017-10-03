@@ -3,20 +3,19 @@
 # get is a simple tool to fast retrieve of hostname frm ip or vice-versa
 path=$(pwd)
 which dig > /dev/null 2>&1
-      if [ "$?" -eq "0" ]; then
-      which nslookup > /dev/null 2>&1
-      if [ "$?" -eq "0" ]; then
-echo
+      if [ "$?" -eq "1" ]; then
+echo "dnsutils missing"
+exit 1
 else
-   echo "dnsutils missing"
+      which nslookup > /dev/null 2>&1
+      if [ "$?" -eq "1" ]; then
+echo "dnsutils missing"
 exit 1
 fi 
 fi
 which get > /dev/null 2>&1
-      if [ "$?" -eq "0" ]; then
-      echo
-else
-   cp "$path/get" /usr/local/sbin/get >/dev/null 2>&1
+      if [ "$?" -eq "1" ]; then
+cp "$path/get" /usr/local/sbin/get >/dev/null 2>&1
 chmod +x "/usr/local/sbin/get" >/dev/null 2>&1
 echo "Get tool was installed in /usr/local/sbin/get"
 echo ""
