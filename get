@@ -117,4 +117,6 @@ echo ""
 echo "Get binary was updated succefully."
 exit 1
 fi
+else
+help
 fi
