@@ -16,3 +16,12 @@
 
 - On the first run , theool will install itself on /usr/local/sbin directory
 - After that point just write (get) anywhere in terminal to run it
+
+# How to Use
+
+-To get the hostname from an ip :
+**get -i google.com
+
+To get the ip from an hostame
+
+**get -h 216.58.214.174
