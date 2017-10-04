@@ -9,12 +9,15 @@
 
 # Requirements
 - dnsutils
+- wget (for updates)
+
+- apt-get install dnsutils wget -y
 
 # How to Install
 - git clone https://github.com/peterpt/get.git 
 - cd get && ./get
 
-- On the first run , theool will install itself on /usr/local/sbin directory
+- On the first run , the script will install itself on /usr/local/sbin directory
 - After that point just write (get) anywhere in terminal to run it
 
 # How to Use
