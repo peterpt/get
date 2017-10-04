@@ -19,9 +19,9 @@
 
 # How to Use
 
--To get the hostname from an ip :
-**get -i google.com
+** To get the hostname from an ip :
+- get -i google.com
 
-To get the ip from an hostame
+** To get the ip from an hostame
 
-**get -h 216.58.214.174
+- get -h 216.58.214.174
