@@ -22,9 +22,9 @@
 
 # How to Use
 
-** To get the hostname from an ip :
+* To get the ip from a hostname :
 - get -i google.com
 
-** To get the ip from an hostame
+* To get the hostname from an ip
 
 - get -h 216.58.214.174
